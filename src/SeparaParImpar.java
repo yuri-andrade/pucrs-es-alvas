@@ -1,18 +1,16 @@
 import java.util.Random;
 
 /**
- * Classe para implementação da tarefa da cadeira de algoritmos avancados
- *
- *
+ * Classe para implementação da tarefa da cadeira de algoritmos avancados.
  */
 public class SeparaParImpar {
     /**
-     * Metodo que percorre um vetor e agrupa pares no inicio e impares no final.
+     * Método que percorre um vetor e agrupa pares no inicio e ímpares no final sem o uso de vetor auxiliar.
      *
-     * @param array qualquer
-     * @return array ordenado
+     * @param array vetor qualquer
+     * @return array vetor ordenado
      */
-    public int[] separaParImpar(int... array) {
+    public int[] separaParImparSemVetorAuxiliar(final int... array) {
         int i = 0;
         while (i < array.length) {
             boolean switched = false;
@@ -37,6 +35,28 @@ public class SeparaParImpar {
     }
 
     /**
+     * Método que percorre um vetor e agrupa pares no inicio e ímpares no final com o uso de vetor auxiliar.
+     *
+     * @param array vetor qualquer
+     * @return arrayOrdenado vetor ordenado
+     */
+    public int[] separaParImparComVetorAuxiliar(final int... array) {
+        int[] arrayOrdenado = new int[array.length];
+        int contEven = 0;
+        int contOdd = array.length - 1;
+        for (int numero : array) {
+            if (numero % 2 == 0) {
+                arrayOrdenado[contEven] = numero;
+                contEven++;
+            } else {
+                arrayOrdenado[contOdd] = numero;
+                contOdd--;
+            }
+        }
+        return arrayOrdenado;
+    }
+
+    /**
      * Metodo que popula um vetor com numeros aleatorios.
      *
      * @param evenNumebers quantidade de numeros pares desejados
@@ -51,7 +71,7 @@ public class SeparaParImpar {
         int oddCount = 0;
         int i = 0;
         while (i < size) {
-            final int rand = randomNumber.nextInt(10);
+            final int rand = randomNumber.nextInt(1000000000);
             if (rand % 2 == 0) {
                 if (evenCount < evenNumebers) {
                     array[i] = rand;
